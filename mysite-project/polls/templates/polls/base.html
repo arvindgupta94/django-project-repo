@@ -1,0 +1,5 @@
+<h1> Included templates</h1>
+
+{% for question in latest_question_list %}
+	<li>{{forloop.counter}}{{ question.question_text }}</li>
+{% endfor %}

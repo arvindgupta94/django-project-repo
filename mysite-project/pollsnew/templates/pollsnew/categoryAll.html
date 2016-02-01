@@ -1,0 +1,22 @@
+{% extends 'pollsnew/base.html' %}
+
+{% block title %} {% endblock %}
+{% block body_block %} 
+
+<h3><a href="{% url 'pollsnew:categoryAdd' %}">Add New Category </a></h3></br>
+{% if categories %}
+<h3>Categories List </h3>
+<ul>
+{% for category in categories %}
+
+<li><a href="{% url 'pollsnew:categoryDetail' category.id %}" >{{category.category_name}}</a></li>
+{% endfor %}
+
+{% else %} No categories available 
+{% endif %}
+
+
+
+
+{% endblock %}
+

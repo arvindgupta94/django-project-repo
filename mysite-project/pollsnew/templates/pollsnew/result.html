@@ -1,0 +1,21 @@
+{% if question %}
+<p>
+<b>Q.{{ question.question_text }}</b> </br>
+
+<table>
+<tr>
+<th>Choice </th>
+<th>Votes </th>
+</tr>
+
+{% for choice in question.choice_set.all %}
+
+<tr> <td>{{ choice.choice_text }} </td> <td> {{ choice.votes }} </td> </tr>
+{% endfor %}
+
+</table>
+</p>
+{% else %}
+
+<p> Question Does not exist </p>
+{% endif %}

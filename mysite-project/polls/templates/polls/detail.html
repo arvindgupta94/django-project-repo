@@ -1,0 +1,22 @@
+{% if error_message %}
+<p >!!!! ERROR !!!! </br> {{error_message }} </p> 
+{% endif %}
+{% if question %}
+<p>
+<b>Q.{{ question.question_text }}</b> </br>
+
+<form action="{% url 'polls:vote' question.id %}" method='post'>
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+<input type='radio' name='choice' id='choice{{forloop.cunter}}' value='{{choice.id}}' />
+{{choice.choice_text }}<br />
+<!-- <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label> -->
+{% endfor %}
+<input type='submit' value='vote'>
+</form>
+
+</p>
+{% else %}
+
+<p> Question Does not exist </p>
+{% endif %}

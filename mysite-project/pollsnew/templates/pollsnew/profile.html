@@ -1,0 +1,13 @@
+{% extends 'pollsnew/base.html' %}
+{% block body_block %}  
+<p> Total Points <b>{{userpoints }}</b> </p>
+{% for u in userdata %}
+<b>Q. {{u.question }}</b></br>
+ {% for choice in u.question.choice_set.all %}
+ </br>({{forloop.counter}} ). {{choice}}
+ {% endfor %}
+ </br>
+ <p> You voted for <b>{{u.choice}}</b></p>
+ 
+{% endfor %}
+{% endblock %}

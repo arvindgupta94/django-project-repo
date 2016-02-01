@@ -1,0 +1,64 @@
+{% extends 'pollsnew/base.html' %}
+{% load staticfiles %}
+{% block title %}Home {% endblock %}
+
+
+
+{% block side_block %}
+<h5><a href="{% url 'pollsnew:categoryAdd' %}">Add New Category |</a></h5>
+{% if categories %}
+<h4> Most viewed Categories </h4>
+<ul>
+{% for category in categories %}
+	<li><a href="{% url 'pollsnew:categoryDetail' category.id %}">{{ category.category_name }}</a></li></br>
+	{% endfor %}
+</ul>
+
+{% else %}
+<p> No Categories Available </p>
+{% endif %}
+
+
+
+<h5> <a href="{% url 'pollsnew:categoryAll' %}"> All category </a></h5>
+
+{% endblock %}
+
+
+
+{% block body_block %} 
+
+<h1>Welcome at Polls New Application </h1>
+{% if error_message %}
+{{error_message }}
+{% endif %}
+
+
+
+
+
+<hr/><hr/><hr/>
+<!-- Displaying Questions -->
+<h1> Top voted questions </h1>
+{% if error_message %}
+<p >!!!! ERROR !!!! </br> {{error_message }} </p> 
+{% endif %}
+
+{% if questions %}
+<p>
+
+
+{% for question in questions %}
+
+
+{% include 'pollsnew/polling.html' %}
+
+<br/> <br/><br/><br/><br/>
+{% endfor %}
+</p>
+{% else %}
+
+<p> Questions Does not exist </p>
+{% endif %}
+
+{% endblock %}

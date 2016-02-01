@@ -1,0 +1,18 @@
+
+{% extends 'pollsnew/base.html' %}
+{% block body_block %} 
+{% if error_message %}
+<p >!!!! ERROR !!!! </br> {{error_message }} </p> 
+{% endif %}
+{% if question %}
+<p>
+<b>Q.{{ question.question_text }}</b> </br>
+{% include 'pollsnew/polling.html' %}
+
+</p>
+{% else %}
+
+<p> Question Does not exist </p>
+{% endif %}
+{% endblock %}
+

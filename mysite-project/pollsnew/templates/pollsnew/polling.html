@@ -1,0 +1,36 @@
+<b><a href="{% url 'pollsnew:questionDetail' question.id %}">Q.{{ question.question_text }}</b> </a></br>
+<form action="{% url 'pollsnew:vote' question.id %}" method='post'>
+{% csrf_token %}
+
+<table> <tr><th>Option </th> <th>Choices</th> <th>Votes</th></tr> 
+{% for choice in question.choice_set.all %}
+<tr>
+	<td><input type='radio' name='choice' id='choice{{forloop.cunter}}' value='{{choice.id}}' /> </td>
+	<td>{{choice.choice_text }}</td> <td> {{choice.votes }} </td>
+</tr>
+
+	<!-- <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label> -->
+{% endfor %}
+
+</table>
+{% if  flag %}
+<p>  <b>Voted </b></p>
+
+	{% if user.is_authenticated %}
+		
+			<p><b>Max points : {{userPoints }} </b> || You can burn 10 points for each Extra vote</br>
+			<input type='integer'  name='burn' placeholder='Enter points in multiple of 10 to burn ' /></br>
+			<input type='submit' value='Burn'>
+			
+			
+			</p>
+		
+	{% endif %}
+{% else %}
+<input type='submit' value='vote'>|
+
+{% endif %}
+</form>
+<a href="{% url 'pollsnew:choiceAdd' question.id %}">Add choice </a>
+
+

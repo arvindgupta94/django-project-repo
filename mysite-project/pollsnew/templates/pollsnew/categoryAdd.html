@@ -1,0 +1,17 @@
+{% extends 'pollsnew/base.html' %}
+
+{% block title %} Add Category{% endblock %}
+{% block body_block %}
+
+{% if error_message %}
+<b>{{error_message }}</b>
+{% endif %}
+
+<h1> Add a New Category </h1>
+<form action="{% url 'pollsnew:categoryAdd' %}" method='post' >
+{% csrf_token %}
+<input type='text' name='category_name' placeholder='Enter Category Name' /> Category Name </br>
+<input type='submit' value='Add Category' />
+</form>
+<h5><a href="{% url 'pollsnew:index' %}">Home Polls NEw </a></h5>
+{% endblock %}

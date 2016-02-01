@@ -1,0 +1,47 @@
+{% extends 'pollsnew/base.html' %}
+
+{% block title %} Category Detail{% endblock %}
+
+{% block side_block %}
+
+	<h4><a href="{% url 'pollsnew:questionAdd' category.id %}">Add question </a></h4></br>
+	<h4>Questions List </h4>
+	<ul>
+	{% for question in questions %}
+	
+		<li><a href="{% url 'pollsnew:questionDetail' question.id %}">{{question}}</a></li>
+	{% endfor %}
+	</ul>
+{% endblock %}
+
+
+
+
+{% block body_block %} 
+	
+	
+
+
+{% if category %}
+
+<h1>{{category.category_name}}</h1>
+
+{% if questions %}
+<p>
+
+
+{% for question in questions %}
+
+ 
+{% include 'pollsnew/polling.html' %}
+
+<br/> <br/><br/><br/><br/>
+{% endfor %}
+</p>
+{% else %}
+
+<p> Questions Does not exist </p>
+{% endif %}
+{% endif %}
+
+{% endblock %}
